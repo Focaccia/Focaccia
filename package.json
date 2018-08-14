@@ -1,0 +1,28 @@
+{
+  "name": "focaccia",
+  "version": "1.0.0",
+  "description": "Abstraction for local and remote filesystems for nodejs",
+  "repository": {
+    "url": "https://github.com/Focaccia/Focaccia.git",
+    "type": "git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./tests/**/*.test.js"
+  },
+  "keywords": [
+    "filesystem",
+    "aws",
+    "s3",
+    "azure",
+    "storage",
+    "abstraction"
+  ],
+  "author": "Bortoli German",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {}
+}
