@@ -7,6 +7,8 @@ class BaseAdapter {
     
     setPathPrefix(prefix) {
 
+        this.pathPrefix = '';
+        
         if (typeof (prefix) !== 'string') {
             return;
         }
@@ -37,8 +39,16 @@ class BaseAdapter {
             path = path.substring(1);
         }
 
-        //@TODO: left trim the path
-        return `${this.getPathPrefix()}/${path}`;
+        let newPath = [];
+        let pathPrefix = this.getPathPrefix();
+
+        if (pathPrefix.length > 0) {
+            newPath.push(pathPrefix);
+        }
+
+        newPath.push(path);
+
+        return newPath.join('/');
     }
 }
 
