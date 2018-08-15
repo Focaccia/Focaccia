@@ -1,49 +1,14 @@
 const fs = require("fs");
+const BaseAdapter = require("./BaseAdapter");
 
-class LocalAdapter {
+class LocalAdapter extends BaseAdapter {
     
     constructor(root, writeFlags, linkHandling, permissions = []) {
+        super(root);
         this.pathSeparator = '/';
-        this.root = root;
 
-        this.setPathPrefix(root);
     }
 
-    setPathPrefix(prefix) {
-        
-        if (typeof(prefix) !== 'string') {
-            return;
-        }
-        
-        if (prefix === '') {
-            return;
-        }
-
-        this.pathPrefix = prefix.trim("/");
-
-        return this.pathPrefix;
-    }
-
-    getPathPrefix() {
-        return this.pathPrefix;
-    }
-
-    applyPathPrefix(path) {
-        if (!path) {
-            return '';
-        }
-        
-        if (path.length === 0) {
-            return '';
-        }
-
-        if (path[0] === '/') {
-            path = path.substring(1);
-        }
-
-        //@TODO: left trim the path
-        return `${this.getPathPrefix()}/${path}`;
-    }
 
     has(path) {
         let location = this.applyPathPrefix(path);
