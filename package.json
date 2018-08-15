@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Abstraction for local and remote filesystems for nodejs",
   "repository": {
-    "url": "https://github.com/Focaccia/Focaccia.git",
+    "url": "git+https://github.com/Focaccia/Focaccia.git",
     "type": "git"
   },
   "main": "index.js",
