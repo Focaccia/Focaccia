@@ -10,17 +10,22 @@ matrix:
   include:
     - os: linux
       node_js: "10"
+      env: DEV=1
       stage: basic
     - os: linux
       node_js: "10"
+      env: DEV=1
       stage: advanced
     - os: linux
       node_js: "10"
+      env: DEV=1
       stage: advanced
     - os: osx
       node_js: "10"
+      env: DEV=1
       stage: versions
     - os: linux
       node_js: "8"
+      env: DEV=1
       stage: versions    
   fast_finish: true
