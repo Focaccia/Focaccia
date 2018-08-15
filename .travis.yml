@@ -5,3 +5,22 @@ language: node_js
 cache:
   directories:
     - "node_modules"
+
+matrix:
+  include:
+    - os: linux
+      node_js: "10"
+      stage: basic
+    - os: linux
+      node_js: "10"
+      stage: advanced
+    - os: linux
+      node_js: "10"
+      stage: advanced
+    - os: osx
+      node_js: "10"
+      stage: versions
+    - os: linux
+      node_js: "8"
+      stage: versions    
+  fast_finish: true
