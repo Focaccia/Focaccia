@@ -1,5 +1,5 @@
 {
-  "name": "focaccia",
+  "name": "@focaccia/focaccia",
   "version": "1.0.0",
   "description": "Abstraction for local and remote filesystems for nodejs",
   "repository": {
