@@ -28,7 +28,7 @@ class Focaccia {
      * @param {string} path 
      */
     has(path) {
-        return this.getAdapter().has(path);
+        return this.__promisify(this.getAdapter().has(path));
     }
 
     /**
@@ -38,7 +38,7 @@ class Focaccia {
      * @param {object} config 
      */
     write(path, contents, config = []) {
-        return this.getAdapter().write(path, contents, config);
+        return this.__promisify(this.getAdapter().write(path, contents, config));
     }
     
     /**
@@ -48,7 +48,7 @@ class Focaccia {
      * @param {object} config 
      */
     writeStream(path, resource, config = []) {
-        return this.getAdapter().writeStream(path, resource, config);
+        return this.__promisify(this.getAdapter().writeStream(path, resource, config));
     }
 
     /**
@@ -59,10 +59,10 @@ class Focaccia {
      */
     put(path, contents, config = []) {
         if (this.has(path)) {
-            return this.update(path, contents, config);
+            return this.__promisify(this.update(path, contents, config));
         }
 
-        return this.write(path, contents, config);
+        return this.__promisify(this.write(path, contents, config));
     }
     
     /**
@@ -72,7 +72,7 @@ class Focaccia {
      * @param {object} config 
      */
     putStream(path, resource, config = []) {
-        return this.getAdapter().updateStream(path, resource, config);
+        return this.__promisify(this.getAdapter().updateStream(path, resource, config));
     }
 
     /** 
@@ -82,12 +82,12 @@ class Focaccia {
         let fileContent = this.read(path);
 
         if (!fileContent) {
-            return false;
+            return this.__promisify(false);
         }
 
         this.delete(path);
 
-        return fileContent;
+        return this.__promisify(fileContent);
     }
 
     /**
@@ -97,7 +97,7 @@ class Focaccia {
      * @param {object} config 
      */
     update(path, contents, config = []) {
-        return this.getAdapter().update(path, contents, config);
+        return this.__promisify(this.getAdapter().update(path, contents, config));
     }
     
     /**
@@ -105,7 +105,7 @@ class Focaccia {
      * @param {string} path 
      */
     read(path) {
-        return this.getAdapter().read(path);
+        return this.__promisify(this.getAdapter().read(path));
     }
 
     /**
@@ -113,7 +113,7 @@ class Focaccia {
      * @param {string} path 
      */
     readStream(path) {
-        return this.getAdapter().readStream(path);
+        return this.__promisify(this.getAdapter().readStream(path));
     }
 
     /**
@@ -122,7 +122,7 @@ class Focaccia {
      * @param {string} newpath 
      */
     rename(path, newpath) {
-        return this.getAdapter().rename(path, newpath);
+        return this.__promisify(this.getAdapter().rename(path, newpath));
     }
 
     /**
@@ -131,7 +131,7 @@ class Focaccia {
      * @param {string} newpath 
      */
     copy(path, newpath) {
-        return this.getAdapter().copy(path, newpath);
+        return this.__promisify(this.getAdapter().copy(path, newpath));
     }
 
     /**
@@ -139,7 +139,7 @@ class Focaccia {
      * @param {string} path 
      */
     delete(path) {
-        return this.getAdapter().delete(path);
+        return this.__promisify(this.getAdapter().delete(path));
     }
 
     /**
@@ -147,7 +147,7 @@ class Focaccia {
      * @param {string} dirname 
      */
     deleteDir(dirname) {
-        return this.getAdapter().deleteDir(dirname);
+        return this.__promisify(this.getAdapter().deleteDir(dirname));
     }
 
     /**
@@ -156,7 +156,7 @@ class Focaccia {
      * @param {object} config 
      */
     createDir(path, config = []) {
-        return this.getAdapter().createDir(path, config);
+        return this.__promisify(this.getAdapter().createDir(path, config));
     }
 
     /**
@@ -165,7 +165,7 @@ class Focaccia {
      * @param {boolean} recursive 
      */
     listContents(directory = '.', recursive = false) {
-        return this.getAdapter().listContents(directory, recursive);
+        return this.__promisify(this.getAdapter().listContents(directory, recursive));
     }
 
     //@TODO MORE METHODS
@@ -176,6 +176,10 @@ class Focaccia {
     setVisibility(path, visibility) {}
     getMetadata(path) {}
     get(path, handler) {}
+
+    __promisify(response) {
+        return Promise.resolve(response);
+    }
 
 }
 
