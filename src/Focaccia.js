@@ -164,7 +164,7 @@ class Focaccia {
      * @param {string} directory 
      * @param {boolean} recursive 
      */
-    listContents(directory = '', recursive = false) {
+    listContents(directory = "", recursive = false) {
         return this.__promisify(this.getAdapter().listContents(directory, recursive));
     }
 

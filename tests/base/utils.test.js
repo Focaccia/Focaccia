@@ -1,5 +1,5 @@
 const assert = require('assert');
-const {stringUtils} = require("../../src/utils");
+const {stringUtils, fileUtils} = require("../../src/utils");
 
 describe("String Utils", () => {
     describe("trim", () => {
@@ -19,6 +19,18 @@ describe("String Utils", () => {
             let result = stringUtils.ltrim(value, "/");
 
             assert(result, expected);
+        });
+    });
+});
+
+describe("File Utils", () => {
+    describe("#normalizeDirname", () => {
+        it("Should return a normalized path", () => {
+            let value = ".";
+            let expected = "";
+            let result = fileUtils.normalizeDirname(value);
+
+            assert.equal(result, expected);
         });
     });
 });
