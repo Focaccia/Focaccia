@@ -25,6 +25,7 @@ class BaseAdapter {
     }
 
     applyPathPrefix(path) {
+
         if (!path) {
             return '';
         }

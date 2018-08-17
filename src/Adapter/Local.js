@@ -84,7 +84,11 @@ class LocalAdapter extends BaseAdapter {
         return this.has(path) === false;
     }
 
-    listContents(directory = '.', recursive = false) {
+    listContents(directory = "", recursive = false) {
+        if (directory.length === 0) {
+            directory = ".";
+        }
+        
         let location = this.applyPathPrefix(directory);
         return fs.readdirSync(location);
     }
