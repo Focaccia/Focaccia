@@ -39,10 +39,10 @@ class BaseAdapter {
             path = path.substring(1);
         }
 
-        let lastPos = path.length - 1;
-        if (path[lastPos] === "/") {
-            path = path.substring(0, lastPos);
-        }
+        // let lastPos = path.length - 1;
+        // if (path[lastPos] === "/") {
+        //     path = path.substring(0, lastPos);
+        // }
 
         let newPath = [];
         let pathPrefix = this.getPathPrefix();
