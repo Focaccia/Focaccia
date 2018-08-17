@@ -44,6 +44,13 @@ describe("Adapter", () => {
         });
     });
 
+    describe("#read", () => {
+        it("Should return some content", async () => {
+            let response = await FC.read(tmpFile);
+            assert.equal(typeof(response["contents"]) === 'string', false);
+        });
+    });
+
     describe("#writeStream", () => {
         it("Test write stream", async () => {
             let result = await FC.writeStream(tmpStreamFile);
