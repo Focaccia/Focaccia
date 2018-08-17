@@ -9,7 +9,6 @@ class LocalAdapter extends BaseAdapter {
 
     }
 
-
     has(path) {
         let location = this.applyPathPrefix(path);
         return fs.existsSync(location);

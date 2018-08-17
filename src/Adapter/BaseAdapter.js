@@ -1,3 +1,5 @@
+const {stringUtils} = require("../utils");
+
 class BaseAdapter {
     constructor(root) {
         this.root = root;
@@ -13,11 +15,7 @@ class BaseAdapter {
             return;
         }
 
-        if (prefix === '') {
-            return;
-        }
-
-        this.pathPrefix = prefix.trim("/");
+        this.pathPrefix = stringUtils.trim(prefix, "/");
 
         return this.pathPrefix;
     }
@@ -31,18 +29,8 @@ class BaseAdapter {
             return '';
         }
 
-        if (path.length === 0) {
-            return '';
-        }
-
-        if (path[0] === '/') {
-            path = path.substring(1);
-        }
-
-        // let lastPos = path.length - 1;
-        // if (path[lastPos] === "/") {
-        //     path = path.substring(0, lastPos);
-        // }
+        path = stringUtils.ltrim(path, "/");
+        // path = stringUtils.trim(path, "/");
 
         let newPath = [];
         let pathPrefix = this.getPathPrefix();
@@ -62,15 +50,9 @@ class BaseAdapter {
         if (newPath.length === 0) {
             return newPath;
         }
-
-        if (newPath[0] === "/") {
-            newPath = newPath.substring(1);
-        }
-
-        let lastPos = newPath.length - 1;
-        if (newPath[lastPos] === "/") {
-            newPath = newPath.substring(0, lastPos);
-        }
+        
+        newPath = stringUtils.trim(newPath, "/");
+        newPath = stringUtils.ltrim(newPath, "/");
 
         return newPath;
     }
