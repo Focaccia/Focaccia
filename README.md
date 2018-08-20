@@ -4,19 +4,22 @@
 
 Focaccia is a storage abstraction layer which allows to manage with easy files into your local or cloud storages.
 
-## Adapters:
-  - Local file system (included in this package)
-  - [AWS](https://github.com/Focaccia/focaccia-aws-adapter)
+## Installing
+  Execute `npm install --save @focaccia/focaccia` to your main project.
   
 ## How To Use:
 
   - To use this tool you will need to initialize two objects, the adapter and the abstraction layer.
+  
+### Adapters:
+  - Local file system (included in this package)
+  - [AWS](https://github.com/Focaccia/focaccia-aws-adapter) 
 
 
-**Uploading a file to AWS**
+**Uploading a file using AWS adapter**
 ```javascript
 const AWS = require('aws-sdk');
-const {AwsS3Adapter} = require("./");
+const {AwsS3Adapter} = require("@focaccia/aws-adapter");
 const {Focaccia} = require("@focaccia/focaccia");
 
 AWS.config.update({
