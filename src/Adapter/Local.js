@@ -1,12 +1,34 @@
-const fs = require("fs");
+const fs = require("fs-extra");
+const _path = require("path");
 const BaseAdapter = require("./BaseAdapter");
+
+const OS_PERMISSIONS = {
+    file: {
+        public: 0644,
+        private: 0600,
+    },
+    dir: {
+        public: 0755,
+        private: 0700,
+    }
+};
 
 class LocalAdapter extends BaseAdapter {
     
-    constructor(root, writeFlags, linkHandling, permissions = []) {
+    constructor(root, writeFlags, linkHandling, permissions = {}) {
         super(root);
-        this.pathSeparator = '/';
+        this.pathSeparator = _path.sep;
+        
+        this.permissionMap = {
+            file: {...OS_PERMISSIONS.file, ...permissions.file},
+            dir: {...OS_PERMISSIONS.dir, ...permissions.dir},
+        };
 
+        this.__ensureDirectory(root);
+    }
+
+    __ensureDirectory(root) {
+        return fs.ensureDirSync(root);
     }
 
     has(path) {
@@ -16,6 +38,7 @@ class LocalAdapter extends BaseAdapter {
 
     write(path, contents, config) {
         let location = this.applyPathPrefix(path);
+        this.__ensureDirectory(_path.dirname(location));
         
         fs.writeFileSync(location, contents, config);
         let hasBeenWritten = this.has(path);
@@ -29,6 +52,7 @@ class LocalAdapter extends BaseAdapter {
 
     writeStream(path, resource, config) {
         let location = this.applyPathPrefix(path);
+        this.__ensureDirectory(_path.dirname(location));
         return fs.createWriteStream(location, config);
     }
 
@@ -62,15 +86,19 @@ class LocalAdapter extends BaseAdapter {
 
     rename(path, newpath) {
         let location = this.applyPathPrefix(path);
-        let newlocation = this.applyPathPrefix(newpath);
+        let newLocation = this.applyPathPrefix(newpath);
+        
+        this.__ensureDirectory(_path.dirname(newLocation));
 
-        fs.renameSync(location, newlocation);
+        fs.renameSync(location, newLocation);
         return this.read(newpath);
     }
 
     copy(path, newpath) {
         let location = this.applyPathPrefix(path);
         let newLocation = this.applyPathPrefix(newpath);
+
+        this.__ensureDirectory(_path.dirname(newLocation));
         
         fs.copyFileSync(location, newLocation);
 
@@ -111,7 +139,7 @@ class LocalAdapter extends BaseAdapter {
 
     deleteDir(dirname) {
         let location = this.applyPathPrefix(dirname);
-        fs.rmdirSync(location);
+        fs.removeSync(location);
 
         return !fs.existsSync(location);
     }

@@ -3,17 +3,17 @@ const assert = require('assert');
 const Focaccia = require("../../src/Focaccia");
 const LocalAdapter = require("../../src/Adapter/Local");
 
-let tmpDir = os.tmpdir();
+let tmpDir = os.tmpdir()+"/focaccia";
 let prophecyAdapter = new LocalAdapter(tmpDir);
 let prophecyConfig = {};
 let FC = new Focaccia(prophecyAdapter, prophecyConfig);
 
-let tmpFile = `focaccia-test.txt`;
+let tmpFile = `tasty/asset/focaccia-test.txt`;
 let tmpFileNew = `focaccia-test-newname.txt`;
 let tmpStreamFile = `focaccia-stream-test.txt`;
 let tmpInnerDir = "focaccia-dir";
 
-describe("Adapter", () => {
+describe(`Adapter root folder: ${tmpDir}`, () => {
     describe("#getAdapter", () => {
         it("Should return the same instance of the prophecy adapter", () => {
             assert.equal(FC.getAdapter(), prophecyAdapter);
@@ -101,9 +101,13 @@ describe("Adapter", () => {
         it("Should delete a file", async () => {
 
             let result = await FC.delete(tmpFileNew);
+            let result2 = await FC.delete(tmpStreamFile);
             
             assert.equal(await FC.has(tmpFileNew), false);
+            assert.equal(await FC.has(tmpStreamFile), false);
+            
             assert.equal(result, true);
+            assert.equal(result2, true);
             
         });
     }); 
@@ -125,17 +129,20 @@ describe("Adapter", () => {
         });
     });
 
-    describe("#Delete Directory", () => {
-        it("Should delete a directory", async () => {
-            let result = await FC.deleteDir(tmpInnerDir);
-            assert(result, true);
-        });
-    });
-
     describe("#ListDirectory", () => {
         it("Should list directory content", async () => {
             let result = await FC.listContents();
             assert(typeof result, 'Array');
+        });
+    });
+
+
+    describe("#Delete Directory", () => {
+        it("Should delete a directory", async () => {
+            let result = await FC.deleteDir(tmpInnerDir);
+            let result2 = await FC.deleteDir("tasty");
+            assert(result, true);
+            assert(result2, true);
         });
     });
 });
