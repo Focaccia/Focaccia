@@ -101,13 +101,13 @@ describe(`Adapter root folder: ${tmpDir}`, () => {
         it("Should delete a file", async () => {
 
             let result = await FC.delete(tmpFileNew);
-            let result2 = await FC.delete(tmpStreamFile);
+            // let result2 = await FC.delete(tmpStreamFile);
             
             assert.equal(await FC.has(tmpFileNew), false);
-            assert.equal(await FC.has(tmpStreamFile), false);
+            // assert.equal(await FC.has(tmpStreamFile), false);
             
             assert.equal(result, true);
-            assert.equal(result2, true);
+            // assert.equal(result2, true);
             
         });
     }); 
