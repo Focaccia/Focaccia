@@ -78,7 +78,7 @@ class LocalAdapter extends BaseAdapter {
         }
 
         return {
-            content: content.toString(),
+            contents: content.toString(),
             stats: this.getMetadata(location),
             path: location
         };

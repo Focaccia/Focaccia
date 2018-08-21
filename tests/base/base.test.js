@@ -40,14 +40,14 @@ describe(`Adapter root folder: ${tmpDir}`, () => {
             assert.equal((result !== null && typeof result === 'object'), true);
             assert.equal((typeof (result.stats.size) === 'number'), true);
             assert.equal(result.stats.size > 0, true);
-            assert.equal((typeof (result.content) === 'string'), true);
+            assert.equal((typeof (result.contents) === 'string'), true);
         });
     });
 
     describe("#read", () => {
         it("Should return some content", async () => {
             let response = await FC.read(tmpFile);
-            assert.equal(typeof(response["contents"]) === 'string', false);
+            assert.equal(typeof(response["contents"]) === 'string', true);
         });
     });
 

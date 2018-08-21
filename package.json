@@ -1,6 +1,6 @@
 {
   "name": "@focaccia/focaccia",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Abstraction for local and remote filesystems for nodejs",
   "repository": {
     "url": "git+https://github.com/Focaccia/Focaccia.git",
