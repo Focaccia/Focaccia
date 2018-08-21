@@ -174,7 +174,11 @@ class Focaccia {
     getVisibility(path) {}
     getSize(path) {}
     setVisibility(path, visibility) {}
-    getMetadata(path) {}
+    
+    getMetadata(path) {
+        return this.__promisify(this.getAdapter().getMetadata(path));
+    }
+    
     get(path, handler) {}
 
     __promisify(response) {
