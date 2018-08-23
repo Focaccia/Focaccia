@@ -19,7 +19,7 @@
     "abstraction"
   ],
   "author": "Bortoli German",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "devDependencies": {
     "istanbul": "^0.4.5",
     "mocha": "^5.2.0"

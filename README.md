@@ -4,6 +4,23 @@
 
 Focaccia is a storage abstraction layer which allows to manage with easy files into your local or cloud storages.
 
+## Contents
+
+- [Installing](#installing)
+- [How to use](#how-to-use)
+- [Adapters](#adapters)
+- [Writing a file](#writing-a-local-file)
+- [Checking file exists](#checking-if-a-file-exists)
+- [Reading file content](#reading-a-file)
+- [Reading file content and delete](#reading-a-file-and-delete)
+- [Rename a file](#rename)
+- [Copy a file](#copy)
+- [Delete a file](#delete)
+- [Creates a directory](#creates-a-directory)
+- [List directory content](#list-directory-content)
+- [Delete a directory](#delete-a-directory)
+- [Buffers & Streams](#buffer-supports)
+
 ## Installing
   Execute `npm install --save @focaccia/focaccia` to your main project.
   
