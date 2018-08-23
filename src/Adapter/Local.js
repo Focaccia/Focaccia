@@ -79,7 +79,7 @@ class LocalAdapter extends BaseAdapter {
 
         return {
             contents: content.toString(),
-            stats: this.getMetadata(location),
+            metadata: this.getMetadata(location),
             path: location
         };
     }
@@ -91,7 +91,7 @@ class LocalAdapter extends BaseAdapter {
         this.__ensureDirectory(_path.dirname(newLocation));
 
         fs.renameSync(location, newLocation);
-        return this.read(newpath);
+        return this.has(newpath);
     }
 
     copy(path, newpath) {
@@ -102,7 +102,7 @@ class LocalAdapter extends BaseAdapter {
         
         fs.copyFileSync(location, newLocation);
 
-        return this.read(newpath);
+        return this.has(newpath);
     }
 
     delete(path) {

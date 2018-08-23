@@ -38,8 +38,8 @@ describe(`Adapter root folder: ${tmpDir}`, () => {
             let result = await FC.write(tmpFile, contents, prophecyConfig);
 
             assert.equal((result !== null && typeof result === 'object'), true);
-            assert.equal((typeof (result.stats.size) === 'number'), true);
-            assert.equal(result.stats.size > 0, true);
+            assert.equal((typeof (result.metadata.size) === 'number'), true);
+            assert.equal(result.metadata.size > 0, true);
             assert.equal((typeof (result.contents) === 'string'), true);
         });
     });
@@ -76,9 +76,7 @@ describe(`Adapter root folder: ${tmpDir}`, () => {
         it("Should rename a file", async () => {
 
             let result = await FC.rename(tmpFile, tmpFileNew);
-            assert.equal((result !== null && typeof result === 'object'), true);
-            assert.equal(await FC.has(tmpFileNew), true);
-            assert.equal(await FC.has(tmpFile), false);
+            assert(result, true);
         });
     }); 
 
@@ -90,7 +88,7 @@ describe(`Adapter root folder: ${tmpDir}`, () => {
 
             let result = await FC.copy(tmpFileNew, tmpFile);
 
-            assert.equal((result !== null && typeof result === 'object'), true);
+            assert(result, true);
             assert.equal(await FC.has(tmpFileNew), true);
             assert.equal(await FC.has(tmpFile), true);
             
