@@ -9,17 +9,19 @@ Focaccia is a storage abstraction layer which allows to manage with easy files i
 - [Installing](#installing)
 - [How to use](#how-to-use)
 - [Adapters](#adapters)
-- [Writing a file](#writing-a-local-file)
-- [Checking file exists](#checking-if-a-file-exists)
-- [Reading file content](#reading-a-file)
-- [Reading file content and delete](#reading-a-file-and-delete)
-- [Rename a file](#rename)
-- [Copy a file](#copy)
-- [Delete a file](#delete)
-- [Creates a directory](#creates-a-directory)
-- [List directory content](#list-directory-content)
-- [Delete a directory](#delete-a-directory)
-- [Buffers & Streams](#buffer-supports)
+- [Initialize](#initialize)
+- Operations:
+   - [Writing a file](#writing-a-local-file)
+   - [Checking file exists](#checking-if-a-file-exists)
+   - [Reading file content](#reading-a-file)
+   - [Reading file content and delete](#reading-a-file-and-delete)
+   - [Rename a file](#rename)
+   - [Copy a file](#copy)
+   - [Delete a file](#delete)
+   - [Creates a directory](#creates-a-directory)
+   - [List directory content](#list-directory-content)
+   - [Delete a directory](#delete-a-directory)
+   - [Buffers & Streams](#buffer-supports)
 
 ## Installing
   Execute `npm install --save @focaccia/focaccia` to your main project.
@@ -33,8 +35,7 @@ Focaccia is a storage abstraction layer which allows to manage with easy files i
   - [AWS](https://github.com/Focaccia/focaccia-aws-adapter) 
 
 ----------------------
-
-### Writing a local file
+### Initialize
 
 ```javascript
 const {Focaccia, LocalAdapter} = require("@focaccia/focaccia");
@@ -42,6 +43,12 @@ const {Focaccia, LocalAdapter} = require("@focaccia/focaccia");
 // This is the root directory to start uploading the files.
 let rootDir = "/var/myproejct/data"; // Make sure this exists and has write access.
 let tAsty = new Focaccia(new LocalAdapter(rootDir), {});
+```
+
+
+### Writing a local file
+
+```javascript
 
 let res = tAsty.write("helloworld.txt", "Hello World"); // returns a promise
 res.then((d) => {
