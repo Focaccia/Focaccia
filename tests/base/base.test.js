@@ -47,7 +47,7 @@ describe(`Adapter root folder: ${tmpDir}`, () => {
     describe("#read", () => {
         it("Should return some content", async () => {
             let response = await FC.read(tmpFile);
-            assert.equal(typeof(response["contents"]) === 'string', true);
+            assert.equal(typeof(response) === 'string', true);
         });
     });
 
@@ -114,7 +114,7 @@ describe(`Adapter root folder: ${tmpDir}`, () => {
         it("Should read the content and then destroy the file", async () => {
             let result = await FC.readAndDelete(tmpFile);
             
-            assert.equal((result !== null && typeof result === 'object'), true);
+            assert.equal((result !== null && typeof result === 'string'), true);
 
             assert.equal(await FC.has(tmpFile), false);
         });

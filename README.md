@@ -81,11 +81,8 @@ res.then((data) => console.log(data));
 
 Output
 
-```json
-{
-  "contents": "...file content string",
-  "metadata": {...}
-}
+```text
+String: File content
 ```
 
 ----------------------
@@ -101,11 +98,8 @@ res.then((data) => console.log(data));
 
 Output
 
-```json
-{
-  "contents": "...file content string",
-  "metadata": {...}
-}
+```text
+String: File content
 ```
 
 ----------------------

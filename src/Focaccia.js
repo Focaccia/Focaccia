@@ -104,8 +104,13 @@ class Focaccia {
      * Read a content file
      * @param {string} path 
      */
-    read(path) {
-        return this.__promisify(this.getAdapter().read(path));
+    async read(path) {
+        let response = await this.__promisify(this.getAdapter().read(path));
+        if (!response) {
+            return false;
+        }
+
+        return response["contents"];
     }
 
     /**
